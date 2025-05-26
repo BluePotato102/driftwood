@@ -1,0 +1,33 @@
+{
+  "sections": [
+    {
+      "name": "Section 1",
+      "questions": [
+        {
+          "question": "1. What color is the sky?",
+          "answer": "blue"
+        },
+        {
+          "question": "2. How many legs does a spider have?",
+          "hint": "Spiders are arachnids",
+          "answer": "eight"
+        }
+      ]
+    },
+    {
+      "name": "Section 2",
+      "questions": [
+        {
+          "question": "1. What is 2 + 2?",
+          "hint": "Use numbers",
+          "answer": "4"
+        },
+        {
+          "question": "2. Example question",
+          "hint": "Example hint",
+          "answer": "Example Answer"
+        }
+      ]
+    }
+  ]
+}

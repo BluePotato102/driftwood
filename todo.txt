@@ -1,0 +1,7 @@
+write the release script
+
+make app.py
+
+make templates/index.html
+
+readme.md guide
