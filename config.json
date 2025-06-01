@@ -1,4 +1,7 @@
 {
+  "maxTries": "Infinity",
+  "triesBeforeHintShow": 1,
+  "showCorrectAnswers": false,
   "sections": [
     {
       "name": "Section 1",
@@ -26,10 +29,10 @@
           "points": 1
         },
         {
-          "question": "2. Example question",
-          "hint": "Example hint",
+          "question": "2. Example Question",
+          "hint": "Example Hint",
           "answer": "Example Answer",
-          "points": 1
+          "points": 7
         }
       ]
     }

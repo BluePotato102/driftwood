@@ -1,7 +1,16 @@
-write the release script
-
-make app.py
-
-make templates/index.html
-
 readme.md guide
+
+implement hints
+
+allow custom color scheme??
+
+make these if needed
+
+  "maxTries": "Infinity",
+  "triesBeforeHintShow": 1,
+  "showCorrectAnswers": false,
+
+
+option to change title, logo etc
+
+cite https://commons.wikimedia.org/wiki/File:Tronc_d%27arbre_aux_Aresquiers.jpg

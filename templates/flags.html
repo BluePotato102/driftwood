@@ -1,11 +1,12 @@
-<!--this is the homepage, this might be the how to or the score.. we will see-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Driftwood Challenge</title>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpg') }}">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <style>
     :root {
       --bg: #0f172a;
@@ -159,6 +160,7 @@
       background-color: #334155;
       color: white;
       margin-bottom: 1rem;
+      box-sizing: border-box;
     }
 
     .modal .buttons {
@@ -166,6 +168,24 @@
       justify-content: flex-end;
       gap: 10px;
     }
+
+    @keyframes fadeInScale {
+      0% {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .modal-bg#successModal .modal,
+    .modal-bg#errorModal .modal {
+      animation: fadeInScale 0.3s ease;
+    }
+
 
     .message {
       margin-top: 1rem;
@@ -181,6 +201,7 @@
     }
   </style>
 </head>
+
 <body>
   <nav>
     <div class="logo">Driftwood</div>
@@ -195,16 +216,18 @@
     <h1>-Flags-</h1>
     <hr>
     {% for section in sections %}
-      <h2>{{ section.name }}</h2>
-      {% for q in section.questions %}
-        <div class="card" data-id="{{ section.name }}_{{ loop.index0 }}">
-          <span class="question-text">{{ q.question }} <span style="font-size: 0.9rem; color: var(--muted)">({{ q.points }} pt)</span></span>
-          <div class="actions">
-            <i class='bx bx-check-circle success-icon' style="display:none"></i>
-            <button class="btn" onclick="openFlagModal('{{ section.name }}', {{ loop.index0 }}, this)">Submit Flag</button>
-          </div>
-        </div>
-      {% endfor %}
+    <h2>{{ section.name }}</h2>
+    {% for q in section.questions %}
+    <div class="card" data-id="{{ section.name }}_{{ loop.index0 }}">
+      <span class="question-text">{{ q.question }} <span style="font-size: 0.9rem; color: var(--muted)">({{ q.points }}
+          pt)</span></span>
+      <div class="actions">
+        <i class='bx bx-check-circle success-icon' style="display:none"></i>
+        <button class="btn" onclick="openFlagModal('{{ section.name }}', '{{ loop.index0 }}', this)">Submit
+          Flag</button>
+      </div>
+    </div>
+    {% endfor %}
     {% endfor %}
   </div>
 
@@ -213,10 +236,32 @@
       <h3>Submit Your Flag</h3>
       <input type="text" id="flagInput" placeholder="Enter flag here..." />
       <div class="buttons">
-        <button class="btn" onclick="closeModal()">Cancel</button>
+        <button class="btn" onclick="closeModal('flagModal')">Cancel</button>
         <button class="btn" onclick="submitFlag()">Submit</button>
       </div>
       <div class="message" id="responseMsg"></div>
+    </div>
+  </div>
+
+  <!-- Success Modal -->
+  <div class="modal-bg" id="successModal">
+    <div class="modal" style="text-align: center;">
+      <i class='bx bx-check-circle' style="font-size: 3rem; color: var(--success);"></i>
+      <h3>Correct!</h3>
+      <div class="buttons" style="justify-content: center; margin-top: 1rem;">
+        <button class="btn" onclick="closeModal('successModal')">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div class="modal-bg" id="errorModal">
+    <div class="modal" style="text-align: center;">
+      <i class='bx bx-x-circle' style="font-size: 3rem; color: var(--danger);"></i>
+      <h3>Incorrect, please try again.</h3>
+      <div class="buttons" style="justify-content: center; margin-top: 1rem;">
+        <button class="btn" onclick="closeModal('errorModal')">Close</button>
+      </div>
     </div>
   </div>
 
@@ -243,8 +288,8 @@
       document.getElementById("flagModal").style.display = "flex";
     }
 
-    function closeModal() {
-      document.getElementById("flagModal").style.display = "none";
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
     }
 
     async function submitFlag() {
@@ -256,28 +301,47 @@
       });
 
       const data = await res.json();
-      const msg = document.getElementById("responseMsg");
+
+      closeModal("flagModal");
 
       if (data.success) {
-        msg.innerText = data.message;
-        msg.className = "message text-green";
-
         const id = `${currentSection}_${currentIndex}`;
         solvedFlags[id] = true;
         localStorage.setItem("solvedFlags", JSON.stringify(solvedFlags));
         markSolved(id);
-
-        setTimeout(closeModal, 1000);
+        document.getElementById("successModal").style.display = "flex";
       } else {
-        msg.innerText = data.message;
-        msg.className = "message text-red";
+        document.getElementById("errorModal").style.display = "flex";
       }
+
     }
+
 
     // On load
     window.onload = () => {
       Object.keys(solvedFlags).forEach(markSolved);
+
+      // enter/escape to submit/close flag
+      document.getElementById("flagInput").addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          submitFlag();
+        } else if (event.key === "Escape") {
+          event.preventDefault();
+          closeModal("flagModal")
+        }
+      });
+
+      // exit modal by click
+      document.querySelectorAll(".modal-bg").forEach(modal => {
+        modal.addEventListener("click", e => {
+          if (e.target === modal) closeModal(modal.id);
+        });
+      });
+
+      // add exit by keyboard tap for message??
     };
   </script>
 </body>
+
 </html>
