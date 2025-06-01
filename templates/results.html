@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driftwood Results</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --accent: #3b82f6;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--card);
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav ul li a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: var(--accent);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .summary {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.25rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      border-bottom: 2px solid #334155;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .question {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .question.correct {
+      border-left: 4px solid var(--success);
+    }
+
+    .question.incorrect {
+      border-left: 4px solid var(--danger);
+    }
+
+    .question .text {
+      flex-grow: 1;
+    }
+
+    .question .status {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .correct .status {
+      color: var(--success);
+    }
+
+    .incorrect .status {
+      color: var(--danger);
+    }
+
+    @media (max-width: 600px) {
+      .question {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .question .status {
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Driftwood</div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/flags">Flags</a></li>
+      <li><a href="/results">Results</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>-Results-</h1>
+    <hr>
+    <br>
+    <div class="summary" id="summary">
+      <!-- Summary will be populated by JavaScript -->
+    </div>
+    <div id="results">
+      <!-- Results will be populated by JavaScript -->
+    </div>
+  </div>
+
+  <script>
+    fetch('/config')
+      .then(res => res.json())
+      .then(config => {
+        const solvedFlags = JSON.parse(localStorage.getItem("solvedFlags") || "{}");
+        const resultsContainer = document.getElementById("results");
+        let totalPoints = 0, earnedPoints = 0;
+  
+        config.sections.forEach((section) => {
+          const sectionDiv = document.createElement("div");
+          sectionDiv.classList.add("section");
+  
+          const sectionTitle = document.createElement("h2");
+          sectionTitle.textContent = section.name;
+          sectionDiv.appendChild(sectionTitle);
+  
+          section.questions.forEach((q, index) => {
+            totalPoints += q.points;
+            const id = `${section.name}_${index}`;
+            const isCorrect = solvedFlags[id];
+  
+            if (isCorrect) earnedPoints += q.points;
+  
+            const questionDiv = document.createElement("div");
+            questionDiv.className = `question ${isCorrect ? 'correct' : 'incorrect'}`;
+  
+            const textSpan = document.createElement("span");
+            textSpan.classList.add("text");
+            textSpan.innerHTML = `${q.question} <span style="color: var(--muted); font-size: 0.9rem;">(${q.points} pt${q.points > 1 ? "s" : ""})</span>`;
+  
+            const statusSpan = document.createElement("span");
+            statusSpan.className = "status";
+            statusSpan.textContent = isCorrect ? "Correct" : "Incorrect";
+  
+            questionDiv.appendChild(textSpan);
+            questionDiv.appendChild(statusSpan);
+            sectionDiv.appendChild(questionDiv);
+          });
+  
+          resultsContainer.appendChild(sectionDiv);
+        });
+  
+        document.getElementById("summary").textContent = `You have earned ${earnedPoints} out of ${totalPoints} points.`;
+      });
+  </script>  
+</body>
+</html>

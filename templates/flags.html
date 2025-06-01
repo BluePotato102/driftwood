@@ -1,0 +1,283 @@
+<!--this is the homepage, this might be the how to or the score.. we will see-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driftwood Challenge</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --accent: #3b82f6;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --success: #22c55e;
+      --danger: #ef4444;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--card);
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+
+    nav ul li a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: var(--accent);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      border-bottom: 2px solid #334155;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.2s ease;
+    }
+
+    .card:hover {
+      background: #273449;
+    }
+
+    .question-text {
+      font-size: 1.1rem;
+      font-weight: 500;
+      flex-grow: 1;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: 20px;
+    }
+
+    .btn {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #2563eb;
+    }
+
+    .btn:disabled {
+      background-color: #1e40af;
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .success-icon {
+      color: var(--success);
+      font-size: 1.2rem;
+    }
+
+    .modal-bg {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .modal {
+      background-color: #1e293b;
+      padding: 24px;
+      border-radius: 12px;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .modal h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background-color: #334155;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .modal .buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .message {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .text-green {
+      color: var(--success);
+    }
+
+    .text-red {
+      color: var(--danger);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Driftwood</div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/flags">Flags</a></li>
+      <li><a href="/results">Results</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>-Flags-</h1>
+    <hr>
+    {% for section in sections %}
+      <h2>{{ section.name }}</h2>
+      {% for q in section.questions %}
+        <div class="card" data-id="{{ section.name }}_{{ loop.index0 }}">
+          <span class="question-text">{{ q.question }} <span style="font-size: 0.9rem; color: var(--muted)">({{ q.points }} pt)</span></span>
+          <div class="actions">
+            <i class='bx bx-check-circle success-icon' style="display:none"></i>
+            <button class="btn" onclick="openFlagModal('{{ section.name }}', {{ loop.index0 }}, this)">Submit Flag</button>
+          </div>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+  <div class="modal-bg" id="flagModal">
+    <div class="modal">
+      <h3>Submit Your Flag</h3>
+      <input type="text" id="flagInput" placeholder="Enter flag here..." />
+      <div class="buttons">
+        <button class="btn" onclick="closeModal()">Cancel</button>
+        <button class="btn" onclick="submitFlag()">Submit</button>
+      </div>
+      <div class="message" id="responseMsg"></div>
+    </div>
+  </div>
+
+  <script>
+    let currentSection = "";
+    let currentIndex = 0;
+    let currentBtn = null;
+
+    const solvedFlags = JSON.parse(localStorage.getItem("solvedFlags") || "{}");
+
+    function markSolved(id) {
+      const card = document.querySelector(`.card[data-id="${id}"]`);
+      if (!card) return;
+      card.querySelector(".btn").disabled = true;
+      card.querySelector(".success-icon").style.display = "inline";
+    }
+
+    function openFlagModal(section, index, btn) {
+      currentSection = section;
+      currentIndex = index;
+      currentBtn = btn;
+      document.getElementById("flagInput").value = "";
+      document.getElementById("responseMsg").innerText = "";
+      document.getElementById("flagModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("flagModal").style.display = "none";
+    }
+
+    async function submitFlag() {
+      const flag = document.getElementById("flagInput").value;
+      const res = await fetch("/submit_flag", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ section: currentSection, index: currentIndex, flag: flag })
+      });
+
+      const data = await res.json();
+      const msg = document.getElementById("responseMsg");
+
+      if (data.success) {
+        msg.innerText = data.message;
+        msg.className = "message text-green";
+
+        const id = `${currentSection}_${currentIndex}`;
+        solvedFlags[id] = true;
+        localStorage.setItem("solvedFlags", JSON.stringify(solvedFlags));
+        markSolved(id);
+
+        setTimeout(closeModal, 1000);
+      } else {
+        msg.innerText = data.message;
+        msg.className = "message text-red";
+      }
+    }
+
+    // On load
+    window.onload = () => {
+      Object.keys(solvedFlags).forEach(markSolved);
+    };
+  </script>
+</body>
+</html>
