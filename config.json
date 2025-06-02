@@ -2,6 +2,7 @@
   "maxTries": "Infinity",
   "triesBeforeHintShow": 1,
   "showCorrectAnswers": false,
+  "time": "Infinity",
   "sections": [
     {
       "name": "Section 1",

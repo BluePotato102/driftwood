@@ -10,6 +10,7 @@ make these if needed
   "triesBeforeHintShow": 1,
   "showCorrectAnswers": false,
 
+time feature
 
 option to change title, logo etc
 

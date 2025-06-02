@@ -1,6 +1,8 @@
 {
   "maxTries": "Infinity",
   "triesBeforeHintShow": 1,
+  "showCorrectAnswers": false,
+  "time": "Infinity",
   "sections": [
     {
       "name": "Section 1",
@@ -8,13 +10,13 @@
         {
           "question": "1. What color is the sky?",
           "points": 1,
-          "hash": "f16d8a8f1a1a060ffdc2530b5187643033922cb0cd7e0cb907f67a9dd4a6664b:9f9080ea6c11b7e0f19654f97f4eb417"
+          "hash": "c48a3e72577251bc303258773974bac2d04638568a032dc127cae3b1022867d2:57c823f2798c560604f5e3f1da1f8a3a"
         },
         {
           "question": "2. How many legs does a spider have?",
           "hint": "Spiders are arachnids",
           "points": 1,
-          "hash": "1cdeb67bb88a83b4fc5783137a32632092d7f6b102df03ec3e7cb1e470eb6834:f6a6daa1aadf9aaf3a548d77ac2ec404"
+          "hash": "70a2cda0f62b3498c6b685e7d2ea78e929fa11feab4059380217228db940157b:57f5bcbad21b733ee6103a09e732f857"
         }
       ]
     },
@@ -25,13 +27,13 @@
           "question": "1. What is 2 + 2?",
           "hint": "Use numbers",
           "points": 1,
-          "hash": "4ae02372170426dc78346fe1a1df5b741233d928c3445d91ff2a67c29adae89a:ce221834f33b8a55133244b344019fc6"
+          "hash": "8020a4276dfd049c8240b7e759b2d6a7104f7b0bac4cfde56d0b3b8f3e027116:b4116e414f3c444c649059a121da9091"
         },
         {
-          "question": "2. Example question",
-          "hint": "Example hint",
+          "question": "2. Example Question",
+          "hint": "Example Hint",
           "points": 7,
-          "hash": "252eb87b5cf77a0f23d6ab0fb1cfb68f9c5962dba3d4013972a17c09626494c5:d4b9046bdf09e959aedd5704514b7ed0"
+          "hash": "5a44039c334d1920a48bfa8a84577098d434eee681688c900933313fdbda84d4:af7d6b68a2df33f5b9e3fa624de91c98"
         }
       ]
     }

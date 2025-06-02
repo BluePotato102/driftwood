@@ -90,6 +90,11 @@
       background: #273449;
     }
 
+    .hint-text {
+      color: var(--muted);
+      font-style: italic;
+    }
+
     .question-text {
       font-size: 1.1rem;
       font-weight: 500;
@@ -219,19 +224,32 @@
     <h2>{{ section.name }}</h2>
     {% for q in section.questions %}
     <div class="card" data-id="{{ section.name }}_{{ loop.index0 }}">
-      <span class="question-text">{{ q.question }} <span style="font-size: 0.9rem; color: var(--muted)">({{ q.points }}
-          pt)</span></span>
+      <div style="flex: 1;">
+        <span class="question-text">
+          {{ q.question }}
+          <span style="font-size: 0.9rem; color: var(--muted)">
+            ({{ q.points }} pt)
+          </span>
+        </span>
+        {% if q.hint %}
+        <div class="hint-text" style="font-size: 0.85rem; color: var(--muted); margin-top: 6px;">
+          Hint: {{ q.hint }}
+        </div>
+        {% endif %}
+      </div>
       <div class="actions">
         <i class='bx bx-check-circle success-icon' style="display:none"></i>
-        <button class="btn" onclick="openFlagModal('{{ section.name }}', '{{ loop.index0 }}', this)">Submit
-          Flag</button>
+        <button class="btn" onclick="openFlagModal('{{ section.name }}', '{{ loop.index0 }}', this)">
+          Submit Flag
+        </button>
       </div>
     </div>
+
     {% endfor %}
     {% endfor %}
   </div>
 
-  <div class="modal-bg" id="flagModal">
+  <div class="modal-bg" id="flagModal" tabindex="0">
     <div class="modal">
       <h3>Submit Your Flag</h3>
       <input type="text" id="flagInput" placeholder="Enter flag here..." />
@@ -244,7 +262,7 @@
   </div>
 
   <!-- Success Modal -->
-  <div class="modal-bg" id="successModal">
+  <div class="modal-bg" id="successModal" tabindex="0">
     <div class="modal" style="text-align: center;">
       <i class='bx bx-check-circle' style="font-size: 3rem; color: var(--success);"></i>
       <h3>Correct!</h3>
@@ -255,7 +273,7 @@
   </div>
 
   <!-- Error Modal -->
-  <div class="modal-bg" id="errorModal">
+  <div class="modal-bg" id="errorModal" tabindex="0">
     <div class="modal" style="text-align: center;">
       <i class='bx bx-x-circle' style="font-size: 3rem; color: var(--danger);"></i>
       <h3>Incorrect, please try again.</h3>
@@ -286,6 +304,15 @@
       document.getElementById("flagInput").value = "";
       document.getElementById("responseMsg").innerText = "";
       document.getElementById("flagModal").style.display = "flex";
+      document.getElementById("flagModal").focus();
+    }
+
+    function showModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+
+      modal.style.display = "flex";
+      modal.focus();
     }
 
     function closeModal(id) {
@@ -309,9 +336,9 @@
         solvedFlags[id] = true;
         localStorage.setItem("solvedFlags", JSON.stringify(solvedFlags));
         markSolved(id);
-        document.getElementById("successModal").style.display = "flex";
+        showModal("successModal");
       } else {
-        document.getElementById("errorModal").style.display = "flex";
+        showModal("errorModal");
       }
 
     }
@@ -326,9 +353,6 @@
         if (event.key === "Enter") {
           event.preventDefault();
           submitFlag();
-        } else if (event.key === "Escape") {
-          event.preventDefault();
-          closeModal("flagModal")
         }
       });
 
@@ -339,7 +363,18 @@
         });
       });
 
-      // add exit by keyboard tap for message??
+      // function to exit by keyboad press
+      function exitOnKeyBoardPress(event) {
+        const modal = event.target;
+        if ((modal.id === "successModal" || modal.id === "errorModal") || (modal.id === "flagModal" && event.key === "Escape")) {
+          closeModal(modal.id);
+        }
+      }
+
+      // Attach keydown listeners once
+      document.getElementById("successModal").addEventListener("keydown", exitOnKeyBoardPress);
+      document.getElementById("errorModal").addEventListener("keydown", exitOnKeyBoardPress);
+      document.getElementById("flagModal").addEventListener("keydown", exitOnKeyBoardPress);
     };
   </script>
 </body>
