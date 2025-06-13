@@ -10,15 +10,18 @@
         {
           "question": "1. What color is the sky?",
           "points": 1,
-          "hash": "c48a3e72577251bc303258773974bac2d04638568a032dc127cae3b1022867d2:57c823f2798c560604f5e3f1da1f8a3a"
+          "tries": 0,
+          "hash": "119072af40de2a1530f86d00c0f978881885f452383b8786b3a721c47f40dc87:efacb68d9ac95ba099d627f02f45c90e"
         },
         {
           "question": "2. How many legs does a spider have?",
           "hint": "Spiders are arachnids",
           "points": 1,
-          "hash": "70a2cda0f62b3498c6b685e7d2ea78e929fa11feab4059380217228db940157b:57f5bcbad21b733ee6103a09e732f857"
+          "tries": 0,
+          "hash": "d18e13f3c245438a2d9ff423f477e4b133fe227d2a7db4fc444f5ee8082c3261:a9edc23993e8353cac66ca8cd84f85f0"
         }
-      ]
+      ],
+      "solved": false
     },
     {
       "name": "Section 2",
@@ -27,15 +30,49 @@
           "question": "1. What is 2 + 2?",
           "hint": "Use numbers",
           "points": 1,
-          "hash": "8020a4276dfd049c8240b7e759b2d6a7104f7b0bac4cfde56d0b3b8f3e027116:b4116e414f3c444c649059a121da9091"
+          "tries": 0,
+          "hash": "5365e9c351bcdd2641af2daead928df7d23c81068ff5ad670eb637bb33289bf0:3688fdb6586ab709885adb1b8556fcfe"
         },
         {
-          "question": "2. Example Question",
-          "hint": "Example Hint",
+          "question": "2. What is the best drink?",
+          "hint": "water",
           "points": 7,
-          "hash": "5a44039c334d1920a48bfa8a84577098d434eee681688c900933313fdbda84d4:af7d6b68a2df33f5b9e3fa624de91c98"
+          "tries": 0,
+          "hash": "0c569cebc5ba0ebd7d94d9ccf614de812b9f2e3fc938b9d62b59b4adb2c5d96c:f78f8e03cccc3a0a4cb490340040e43a"
         }
-      ]
+      ],
+      "solved": false
+    },
+    {
+      "name": "Section 3",
+      "questions": [
+        {
+          "question": "1. What is the capital of France?",
+          "points": 2,
+          "tries": 0,
+          "hash": "7a7cdbc7997c5d744eec55df007d32a025aded765c356bd2521d2bf556be8f20:d88c0afea23c162d663aaf8447140a0e"
+        },
+        {
+          "question": "2. What programming language is also known as a snake?",
+          "hint": "The snake is Python",
+          "points": 2,
+          "tries": 0,
+          "hash": "594b6d649d3e453c4581aa7f590847c3316bf0b347ce31b5b5ed9098ec95a6f0:5e1cc6f2747cfdd00846d3110002c908"
+        }
+      ],
+      "solved": false
+    },
+    {
+      "name": "Section 4",
+      "questions": [
+        {
+          "question": "1. What color are bananas?",
+          "points": 1,
+          "tries": 0,
+          "hash": "0e1fc8ba2d389686617fbd9baad1abdd5df13ee1a2061cbe1f95e53271d1b306:bb1ddb64f65a4af1d15010382ee969ce"
+        }
+      ],
+      "solved": false
     }
   ]
 }
