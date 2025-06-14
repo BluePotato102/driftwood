@@ -11,14 +11,14 @@
           "question": "1. What color is the sky?",
           "points": 1,
           "tries": 0,
-          "hash": "119072af40de2a1530f86d00c0f978881885f452383b8786b3a721c47f40dc87:efacb68d9ac95ba099d627f02f45c90e"
+          "hash": "9ddc76f774b7db5329e8007989d7db9253458458c80f56276eb589e4ea3c44ce:17dcbb605673c506712a282135a8fdb4"
         },
         {
           "question": "2. How many legs does a spider have?",
           "hint": "Spiders are arachnids",
           "points": 1,
           "tries": 0,
-          "hash": "d18e13f3c245438a2d9ff423f477e4b133fe227d2a7db4fc444f5ee8082c3261:a9edc23993e8353cac66ca8cd84f85f0"
+          "hash": "e05f71d8b92e7e93a2e052ac5b08104fc0672f045e1e8503a49c5f923ef463bb:e57f5cde80d6170e38fa4682e8036be8"
         }
       ],
       "solved": false
@@ -31,14 +31,14 @@
           "hint": "Use numbers",
           "points": 1,
           "tries": 0,
-          "hash": "5365e9c351bcdd2641af2daead928df7d23c81068ff5ad670eb637bb33289bf0:3688fdb6586ab709885adb1b8556fcfe"
+          "hash": "336ecc8f42c789553911b78dcb3542de729c28769933d80b1a11b880a00626a9:7af830b49ec37b15787c56fb8d612744"
         },
         {
           "question": "2. What is the best drink?",
           "hint": "water",
           "points": 7,
           "tries": 0,
-          "hash": "0c569cebc5ba0ebd7d94d9ccf614de812b9f2e3fc938b9d62b59b4adb2c5d96c:f78f8e03cccc3a0a4cb490340040e43a"
+          "hash": "c65169079478f98384e16d69d1e51027aec88e2de16ceaffa1d44d96e7383485:c92a1a363e536ef6f7ef64b18a345ad0"
         }
       ],
       "solved": false
@@ -50,14 +50,14 @@
           "question": "1. What is the capital of France?",
           "points": 2,
           "tries": 0,
-          "hash": "7a7cdbc7997c5d744eec55df007d32a025aded765c356bd2521d2bf556be8f20:d88c0afea23c162d663aaf8447140a0e"
+          "hash": "b2cf5b8bf272615f633498f7a7e99c81fec5a9843d9b0b9262cbce0f594ec255:51e3b1586c9f765400f418bfdb909ba9"
         },
         {
           "question": "2. What programming language is also known as a snake?",
           "hint": "The snake is Python",
           "points": 2,
           "tries": 0,
-          "hash": "594b6d649d3e453c4581aa7f590847c3316bf0b347ce31b5b5ed9098ec95a6f0:5e1cc6f2747cfdd00846d3110002c908"
+          "hash": "f32ab53172ee1e9be7e09a1978bb7c8d7f36ecd9740a595d04d9eb43bbe0575e:42b5106a6ea9bc8406579fb3cf7657a7"
         }
       ],
       "solved": false
@@ -69,7 +69,7 @@
           "question": "1. What color are bananas?",
           "points": 1,
           "tries": 0,
-          "hash": "0e1fc8ba2d389686617fbd9baad1abdd5df13ee1a2061cbe1f95e53271d1b306:bb1ddb64f65a4af1d15010382ee969ce"
+          "hash": "2bb6686ababc898968f62c771da11fa7d5554c87e04b8894694ba50fa19eadb1:25dc8ece3dee39c8dffbabd788c0b6de"
         }
       ],
       "solved": false
