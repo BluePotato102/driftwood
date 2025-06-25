@@ -1,5 +1,5 @@
 {
-  "maxTries": "Infinity",
+  "maxTries": "5",
   "triesBeforeHintShow": 1,
   "showCorrectAnswers": false,
   "time": "Infinity",
@@ -9,19 +9,20 @@
       "questions": [
         {
           "question": "1. What color is the sky?",
+          "answer": "",
           "points": 1,
-          "tries": 0,
-          "hash": "9ddc76f774b7db5329e8007989d7db9253458458c80f56276eb589e4ea3c44ce:17dcbb605673c506712a282135a8fdb4"
+          "hash": "5936ac985e6b8ad43a9435c3317bca67f25271feb8e9e18346136616a5dc1964:d27a7482d2d8138c6f545fbed8e26446",
+          "tries": 5
         },
         {
           "question": "2. How many legs does a spider have?",
           "hint": "Spiders are arachnids",
+          "answer": "",
           "points": 1,
-          "tries": 0,
-          "hash": "e05f71d8b92e7e93a2e052ac5b08104fc0672f045e1e8503a49c5f923ef463bb:e57f5cde80d6170e38fa4682e8036be8"
+          "hash": "74ae6ae1651afe8e21881da92867d58d7d125650094cbcbffa495c22bc90e046:f1b7d8ca99c5d863feb63bf2cfc38cd3",
+          "tries": 2
         }
-      ],
-      "solved": false
+      ]
     },
     {
       "name": "Section 2",
@@ -29,50 +30,52 @@
         {
           "question": "1. What is 2 + 2?",
           "hint": "Use numbers",
+          "answer": "",
           "points": 1,
-          "tries": 0,
-          "hash": "336ecc8f42c789553911b78dcb3542de729c28769933d80b1a11b880a00626a9:7af830b49ec37b15787c56fb8d612744"
+          "hash": "8cbfddf96831f6c0d31fa08c926dac3a97a75aa049371bf788438759afb22b41:5079d021abe974018fc1f585e7e32b69",
+          "tries": 5
         },
         {
           "question": "2. What is the best drink?",
           "hint": "water",
+          "answer": "",
           "points": 7,
-          "tries": 0,
-          "hash": "c65169079478f98384e16d69d1e51027aec88e2de16ceaffa1d44d96e7383485:c92a1a363e536ef6f7ef64b18a345ad0"
+          "hash": "ab0dd8bd7147653c33c73b059157a8680657f93f39c5b12dde4b040a55c0e9f0:8599a53c128110d60339300d75511bda",
+          "tries": 4
         }
-      ],
-      "solved": false
+      ]
     },
     {
       "name": "Section 3",
       "questions": [
         {
           "question": "1. What is the capital of France?",
+          "answer": "",
           "points": 2,
-          "tries": 0,
-          "hash": "b2cf5b8bf272615f633498f7a7e99c81fec5a9843d9b0b9262cbce0f594ec255:51e3b1586c9f765400f418bfdb909ba9"
+          "hash": "b363a102ca75dbace6d4075b8d9de0ff3fa8f4f2276c67458b1d55f64eb20d5d:c3edbfd1a31f322f70a996e6f280d089",
+          "tries": 3
         },
         {
           "question": "2. What programming language is also known as a snake?",
           "hint": "The snake is Python",
+          "answer": "",
           "points": 2,
-          "tries": 0,
-          "hash": "f32ab53172ee1e9be7e09a1978bb7c8d7f36ecd9740a595d04d9eb43bbe0575e:42b5106a6ea9bc8406579fb3cf7657a7"
+          "hash": "f54827adb156e69fbff19670fe45ae758c503f9f2cc9857779029739c345e4f5:291cb12c570ae0326a1915a9805bd5b2",
+          "tries": 5
         }
-      ],
-      "solved": false
+      ]
     },
     {
       "name": "Section 4",
       "questions": [
         {
           "question": "1. What color are bananas?",
+          "answer": "",
           "points": 1,
-          "tries": 0,
-          "hash": "2bb6686ababc898968f62c771da11fa7d5554c87e04b8894694ba50fa19eadb1:25dc8ece3dee39c8dffbabd788c0b6de"
+          "hash": "6c3dbb2e036e533cccdd750be7eab31b539fdd6efa296545ace2ba9bf71c23ac:af580ea476b18368a3810de3bc7f83bf",
+          "tries": 0
         }
-      ],
-      "solved": false
+      ]
     }
   ]
 }

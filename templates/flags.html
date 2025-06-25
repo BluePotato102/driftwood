@@ -134,6 +134,11 @@
       font-size: 1.2rem;
     }
 
+    .failure-icon {
+      color: var(--danger);
+      font-size: 1.2rem;
+    }
+
     .modal-bg {
       position: fixed;
       inset: 0;
@@ -211,7 +216,7 @@
   <nav>
     <div class="logo">Driftwood</div>
     <ul>
-      <li><a href="/">Home</a></li>
+      <li><a href="/">Read Me</a></li>
       <li><a href="/flags">Flags</a></li>
       <li><a href="/results">Results</a></li>
     </ul>
@@ -239,6 +244,7 @@
       </div>
       <div class="actions">
         <i class='bx bx-check-circle success-icon' style="display:none"></i>
+        <i class='bx bx-x-circle failure-icon' style="display:none"></i>
         <button class="btn" onclick="openFlagModal('{{ section.name }}', '{{ loop.index0 }}', this)">
           Submit Flag
         </button>
@@ -272,16 +278,19 @@
     </div>
   </div>
 
+
   <!-- Error Modal -->
   <div class="modal-bg" id="errorModal" tabindex="0">
     <div class="modal" style="text-align: center;">
       <i class='bx bx-x-circle' style="font-size: 3rem; color: var(--danger);"></i>
       <h3>Incorrect, please try again.</h3>
+      <div class="message" id="errorAttempts" style="color: var(--muted); margin-top: 0.5rem;"></div>
       <div class="buttons" style="justify-content: center; margin-top: 1rem;">
         <button class="btn" onclick="closeModal('errorModal')">Close</button>
       </div>
     </div>
   </div>
+
 
   <script>
     let currentSection = "";
@@ -295,6 +304,13 @@
       if (!card) return;
       card.querySelector(".btn").disabled = true;
       card.querySelector(".success-icon").style.display = "inline";
+    }
+
+    function markFailed(id) {
+      const card = document.querySelector(`.card[data-id="${id}"]`);
+      if (!card) return;
+      card.querySelector(".btn").disabled = true;
+      card.querySelector(".failure-icon").style.display = "inline";
     }
 
     function openFlagModal(section, index, btn) {
@@ -328,25 +344,64 @@
       });
 
       const data = await res.json();
-
       closeModal("flagModal");
 
+      const id = `${currentSection}_${currentIndex}`;
+      const card = document.querySelector(`.card[data-id="${id}"]`);
+      const btn = card?.querySelector(".btn");
+
       if (data.success) {
-        const id = `${currentSection}_${currentIndex}`;
         solvedFlags[id] = true;
         localStorage.setItem("solvedFlags", JSON.stringify(solvedFlags));
         markSolved(id);
         showModal("successModal");
       } else {
-        showModal("errorModal");
-      }
+        const msgEl = document.querySelector("#errorModal .message");
+        if (msgEl) msgEl.textContent = data.message;
 
+        showModal("errorModal");
+
+        if (data.tries >= data.maxTries && btn) {
+          btn.disabled = true;
+          card.querySelector(".failure-icon").style.display = "inline";
+        }
+      }
     }
 
+    async function isAnswerCorrect(answer, hashWithSalt) {
+      if (!answer || !hashWithSalt) return false;
+
+      const [storedHash, salt] = hashWithSalt.split(":");
+      const encoded = new TextEncoder().encode(answer + salt);
+      const buffer = await crypto.subtle.digest("SHA-256", encoded);
+      const calculatedHash = Array.from(new Uint8Array(buffer))
+        .map(b => b.toString(16).padStart(2, "0"))
+        .join("");
+
+      return calculatedHash === storedHash;
+    }
 
     // On load
     window.onload = () => {
-      Object.keys(solvedFlags).forEach(markSolved);
+      fetch("/config")
+        .then(res => res.json())
+        .then(config => {
+          config.sections.forEach(section => {
+            section.questions.forEach(async (q, i) => {
+              const id = `${section.name}_${i}`;
+
+              if (q.answer && q.hash && await isAnswerCorrect(q.answer, q.hash)) {
+                markSolved(id);
+              }
+
+              if (q.tries >= config.maxTries && config.maxTries !== "Infinity") {
+                markFailed(id);
+              }
+            });
+          });
+        });
+
+
 
       // enter/escape to submit/close flag
       document.getElementById("flagInput").addEventListener("keydown", function (event) {

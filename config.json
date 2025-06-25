@@ -1,5 +1,5 @@
 {
-  "maxTries": "Infinity",
+  "maxTries": "5",
   "triesBeforeHintShow": 1,
   "showCorrectAnswers": false,
   "time": "Infinity",
@@ -10,18 +10,15 @@
         {
           "question": "1. What color is the sky?",
           "answer": "blue",
-          "points": 1,
-          "tries": 0
+          "points": 1
         },
         {
           "question": "2. How many legs does a spider have?",
           "hint": "Spiders are arachnids",
           "answer": "eight",
-          "points": 1,
-          "tries": 0
+          "points": 1
         }
-      ],
-      "solved": false
+      ]
     },
     {
       "name": "Section 2",
@@ -30,18 +27,15 @@
           "question": "1. What is 2 + 2?",
           "hint": "Use numbers",
           "answer": "4",
-          "points": 1,
-          "tries": 0
+          "points": 1
         },
         {
           "question": "2. What is the best drink?",
           "hint": "water",
           "answer": "example",
-          "points": 7,
-          "tries": 0
+          "points": 7
         }
-      ],
-      "solved": false
+      ]
     },
     {
       "name": "Section 3",
@@ -49,18 +43,15 @@
         {
           "question": "1. What is the capital of France?",
           "answer": "paris",
-          "points": 2,
-          "tries": 0
+          "points": 2
         },
         {
           "question": "2. What programming language is also known as a snake?",
           "hint": "The snake is Python",
           "answer": "Python",
-          "points": 2,
-          "tries": 0
+          "points": 2
         }
-      ],
-      "solved": false
+      ]
     },
     {
       "name": "Section 4",
@@ -68,11 +59,9 @@
         {
           "question": "1. What color are bananas?",
           "answer": "yellow",
-          "points": 1,
-          "tries": 0
+          "points": 1
         }
-      ],
-      "solved": false
+      ]
     }
   ]
 }

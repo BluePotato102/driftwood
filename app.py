@@ -1,7 +1,5 @@
 from flask import Flask, render_template, jsonify, request
 import json, hashlib
-# import aes_encryptor
-import aes_encryptor_temp as aes_encryptor
 
 app = Flask(__name__)
 
@@ -31,23 +29,32 @@ def submit_flag():
     index = int(data.get("index"))
     user_flag = data.get("flag", "").strip()
 
-    try:
-        all_data = aes_encryptor.decrypt()
-    except Exception as e:
-        return jsonify(success=False, message=f"Error decrypting: {str(e)}")
-
-    section = next((s for s in all_data.get("sections", []) if s.get("name") == section_name), None)
-    if not section or index >= len(section.get("questions", [])):
+    section = next((s for s in HASHED_ANSWERS["sections"] if s["name"] == section_name), None)
+    if not section or index >= len(section["questions"]):
         return jsonify(success=False, message="Invalid question.")
 
     question = section["questions"][index]
-    stored_hash, salt = question.get("hash", "").split(":")
+    stored_hash, salt = question["hash"].split(":")
     user_hash = hashlib.sha256((user_flag + salt).encode()).hexdigest()
 
+    question["tries"] = question.get("tries", 0) + 1
+
     if user_hash == stored_hash:
+        question["answer"] = user_flag
+
+        with open("hashed_answers.json", "w") as f:
+            json.dump(HASHED_ANSWERS, f, indent=2)
+
         return jsonify(success=True, message="Correct!")
     else:
-        return jsonify(success=False, message="Incorrect.")
+        with open("hashed_answers.json", "w") as f:
+            json.dump(HASHED_ANSWERS, f, indent=2)
+
+        return jsonify(success=False, message="Incorrect.", tries=question["tries"], maxTries=HASHED_ANSWERS.get("maxTries", "Infinity"))
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
