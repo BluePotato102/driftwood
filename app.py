@@ -6,17 +6,19 @@ app = Flask(__name__)
 with open("hashed_answers.json") as f:
     HASHED_ANSWERS = json.load(f)
 
+TITLE = HASHED_ANSWERS.get("title", "Driftwood")
+
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", title=TITLE)
 
 @app.route("/flags")
 def flags():
-    return render_template("flags.html", sections=HASHED_ANSWERS["sections"])
+    return render_template("flags.html", sections=HASHED_ANSWERS["sections"], title=TITLE)
 
 @app.route("/results")
 def results():
-    return render_template("results.html")
+    return render_template("results.html", title=TITLE)
 
 @app.route("/config")
 def get_config():

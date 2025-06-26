@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Driftwood Challenge</title>
+  <title>{{ title }} Challenge</title>
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpg') }}">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <style>
@@ -209,12 +209,32 @@
     .text-red {
       color: var(--danger);
     }
+
+    .badge {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background-color: var(--card);
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+      transition: background 0.2s ease;
+      z-index: 999;
+    }
+
+    .badge:hover {
+      background-color: var(--accent);
+      color: white;
+    }
   </style>
 </head>
 
 <body>
   <nav>
-    <div class="logo">Driftwood</div>
+    <div class="logo">{{ title }}</div>
     <ul>
       <li><a href="/">Read Me</a></li>
       <li><a href="/flags">Flags</a></li>
@@ -237,9 +257,10 @@
           </span>
         </span>
         {% if q.hint %}
-        <div class="hint-text" style="font-size: 0.85rem; color: var(--muted); margin-top: 6px;">
+        <div class="hint-text" style="font-size: 0.85rem; color: var(--muted); margin-top: 6px; display: none;">
           Hint: {{ q.hint }}
         </div>
+
         {% endif %}
       </div>
       <div class="actions">
@@ -291,6 +312,9 @@
     </div>
   </div>
 
+  <a href="https://github.com/bluepotato102/driftwood" class="badge" target="_blank">
+    Made with Driftwood
+  </a>
 
   <script>
     let currentSection = "";

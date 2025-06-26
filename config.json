@@ -1,8 +1,6 @@
 {
+  "title": "Driftwood",
   "maxTries": "5",
-  "triesBeforeHintShow": 1,
-  "showCorrectAnswers": false,
-  "time": "Infinity",
   "sections": [
     {
       "name": "Section 1",

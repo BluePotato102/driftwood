@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Driftwood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpg') }}">
   <style>
     :root {
@@ -65,7 +66,7 @@
       margin: 2rem auto;
       max-width: 300px;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 
     h1 {
@@ -85,14 +86,35 @@
       background-color: var(--card);
       padding: 1.5rem;
       border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
       margin-top: 2rem;
+    }
+
+    .badge {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background-color: var(--card);
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+      transition: background 0.2s ease;
+      z-index: 999;
+    }
+
+    .badge:hover {
+      background-color: var(--accent);
+      color: white;
     }
   </style>
 </head>
+
 <body>
   <nav>
-    <div class="logo">Driftwood</div>
+    <div class="logo">{{ title }}</div>
     <ul>
       <li><a href="/">Read Me</a></li>
       <li><a href="/flags">Flags</a></li>
@@ -101,28 +123,46 @@
   </nav>
 
   <div class="container">
-    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Driftwood Logo" class="hero-image">
+    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="{{ title }} Logo" class="hero-image">
 
-    <h1>Welcome to the Driftwood Challenge</h1>
+    <h1>Welcome to {{ title }}</h1>
 
     <div class="card">
       <p>
-        In theory this acts as a guide for all the flags, while in the actual compeititon each 
+        The {{ title }} CTF (capture the flag) challenge is a challenge to test your cybserecurity skills on a variety
+        of topics. For each question you must find a unique "flag" hidden within the image itself, and input it on the
+        <strong>flags</strong> page.
       </p>
 
       <p>
-        <strong>Yay list</strong>
-        <ul>
-          <li>smth</li>
-          <li>stmh</li>
-          <li>Smth</li>
-        </ul>
+        Your goal is to find and submit all the flags on this image
+        Some flags may be other forensic questions rather than actual flags
+        You may only have a limited number of attempts for some flags
       </p>
 
       <p>
-        Good luck! Start by clicking the <strong>Flags</strong> tab above.
+        <strong>Before You Begin:</strong>
+      <ul>
+        <li>Do <b>not</b> modify this the scoring system in any way.</li>
+        <li>This system does <b>not</b> rely on any external server.</li>
+        <li>This system is for educational purposes only and may be liable to breaking.</li>
+      </ul>
+      </p>
+
+      <p>
+        When you're ready, click the <strong>Flags</strong> tab to begin. Your progress is stored locally on this image.
+      </p>
+
+      <p>
+        <em>Good luck!</em>
       </p>
     </div>
   </div>
+
+  <a href="https://github.com/bluepotato102/driftwood" class="badge" target="_blank">
+    Made with Driftwood
+  </a>
+
 </body>
+
 </html>

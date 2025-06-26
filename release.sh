@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONFIG_FILE="config.json"
-HASHED_CONFIG_FILE="hashed_config.json"
+HASHED_CONFIG_FILE="hashed_answers.json"
 
 # Step 0: requiure root
 if [ "$EUID" -ne 0 ]; then

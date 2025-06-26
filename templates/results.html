@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Driftwood Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }} Results</title>
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.jpg') }}">
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <style>
     :root {
       --bg: #0f172a;
@@ -129,11 +130,32 @@
         margin-top: 0.5rem;
       }
     }
+
+    .badge {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background-color: var(--card);
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+      transition: background 0.2s ease;
+      z-index: 999;
+    }
+
+    .badge:hover {
+      background-color: var(--accent);
+      color: white;
+    }
   </style>
 </head>
+
 <body>
   <nav>
-    <div class="logo">Driftwood</div>
+    <div class="logo">{{ title }}</div>
     <ul>
       <li><a href="/">Read Me</a></li>
       <li><a href="/flags">Flags</a></li>
@@ -153,6 +175,10 @@
     </div>
   </div>
 
+  <a href="https://github.com/bluepotato102/driftwood" class="badge" target="_blank">
+    Made with Driftwood
+  </a>
+
   <script>
     fetch('/config')
       .then(res => res.json())
@@ -160,43 +186,44 @@
         const solvedFlags = JSON.parse(localStorage.getItem("solvedFlags") || "{}");
         const resultsContainer = document.getElementById("results");
         let totalPoints = 0, earnedPoints = 0;
-  
+
         config.sections.forEach((section) => {
           const sectionDiv = document.createElement("div");
           sectionDiv.classList.add("section");
-  
+
           const sectionTitle = document.createElement("h2");
           sectionTitle.textContent = section.name;
           sectionDiv.appendChild(sectionTitle);
-  
+
           section.questions.forEach((q, index) => {
             totalPoints += q.points;
             const id = `${section.name}_${index}`;
             const isCorrect = solvedFlags[id];
-  
+
             if (isCorrect) earnedPoints += q.points;
-  
+
             const questionDiv = document.createElement("div");
             questionDiv.className = `question ${isCorrect ? 'correct' : 'incorrect'}`;
-  
+
             const textSpan = document.createElement("span");
             textSpan.classList.add("text");
             textSpan.innerHTML = `${q.question} <span style="color: var(--muted); font-size: 0.9rem;">(${q.points} pt${q.points > 1 ? "s" : ""})</span>`;
-  
+
             const statusSpan = document.createElement("span");
             statusSpan.className = "status";
             statusSpan.textContent = isCorrect ? "Correct" : "Incorrect";
-  
+
             questionDiv.appendChild(textSpan);
             questionDiv.appendChild(statusSpan);
             sectionDiv.appendChild(questionDiv);
           });
-  
+
           resultsContainer.appendChild(sectionDiv);
         });
-  
+
         document.getElementById("summary").textContent = `You have earned ${earnedPoints} out of ${totalPoints} points.`;
       });
-  </script>  
+  </script>
 </body>
+
 </html>
