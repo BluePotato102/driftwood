@@ -12,6 +12,10 @@ TITLE = HASHED_ANSWERS.get("title", "Driftwood")
 def home():
     return render_template("index.html", title=TITLE)
 
+@app.route("/readme")
+def readme():
+    return render_template("readme.html", title=TITLE)
+
 @app.route("/flags")
 def flags():
     return render_template("flags.html", sections=HASHED_ANSWERS["sections"], title=TITLE)
@@ -40,19 +44,29 @@ def submit_flag():
     user_hash = hashlib.sha256((user_flag + salt).encode()).hexdigest()
 
     question["tries"] = question.get("tries", 0) + 1
+    max_tries = HASHED_ANSWERS.get("maxTries", "Infinity")
 
     if user_hash == stored_hash:
         question["answer"] = user_flag
-
-        with open("hashed_answers.json", "w") as f:
-            json.dump(HASHED_ANSWERS, f, indent=2)
-
-        return jsonify(success=True, message="Correct!")
+        result = {"success": True, "message": "Correct!"}
     else:
-        with open("hashed_answers.json", "w") as f:
-            json.dump(HASHED_ANSWERS, f, indent=2)
+        result = {
+            "success": False,
+            "message": "Incorrect.",
+            "tries": question["tries"],
+            "maxTries": max_tries
+        }
 
-        return jsonify(success=False, message="Incorrect.", tries=question["tries"], maxTries=HASHED_ANSWERS.get("maxTries", "Infinity"))
+    with open("hashed_answers.json", "w") as f:
+        json.dump(HASHED_ANSWERS, f, indent=2)
+
+    result.update({
+        "tries": question["tries"],
+        "maxTries": max_tries
+    })
+
+    return jsonify(result)
+
 
 
 

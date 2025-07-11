@@ -157,7 +157,8 @@
   <nav>
     <div class="logo">{{ title }}</div>
     <ul>
-      <li><a href="/">Read Me</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/readme">Read Me</a></li>
       <li><a href="/flags">Flags</a></li>
       <li><a href="/results">Results</a></li>
     </ul>
@@ -168,22 +169,21 @@
     <hr>
     <br>
     <div class="summary" id="summary">
-      <!-- Summary will be populated by JavaScript -->
+      <!-- Filled by JS -->
     </div>
     <div id="results">
-      <!-- Results will be populated by JavaScript -->
+      <!-- Filled by JS -->
     </div>
   </div>
 
   <a href="https://github.com/bluepotato102/driftwood" class="badge" target="_blank">
-    Made with Driftwood
+    Made with Driftwood 🪵
   </a>
 
   <script>
     fetch('/config')
       .then(res => res.json())
       .then(config => {
-        const solvedFlags = JSON.parse(localStorage.getItem("solvedFlags") || "{}");
         const resultsContainer = document.getElementById("results");
         let totalPoints = 0, earnedPoints = 0;
 
@@ -197,8 +197,7 @@
 
           section.questions.forEach((q, index) => {
             totalPoints += q.points;
-            const id = `${section.name}_${index}`;
-            const isCorrect = solvedFlags[id];
+            const isCorrect = q.answer && q.answer.trim() !== "";
 
             if (isCorrect) earnedPoints += q.points;
 
@@ -224,6 +223,7 @@
         document.getElementById("summary").textContent = `You have earned ${earnedPoints} out of ${totalPoints} points.`;
       });
   </script>
+
 </body>
 
 </html>

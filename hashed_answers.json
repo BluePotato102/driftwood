@@ -7,10 +7,10 @@
       "questions": [
         {
           "question": "1. What color is the sky?",
-          "answer": "",
+          "answer": "blue",
           "points": 1,
           "hash": "90a7034931f41b32ffd3d0ca3beef5b1a6b13b6985bdfdd49d624cd68c1e798f:1a7b980735829775b3edc5a506679b99",
-          "tries": 0
+          "tries": 1
         },
         {
           "question": "2. How many legs does a spider have?",
@@ -18,7 +18,7 @@
           "answer": "",
           "points": 1,
           "hash": "c23535157bdd4bfde1ee4ba1c0e9e251895ce1214b80363e96c0888ef53a21b6:c9bfe236864fed46a2c5c6c2d6f737e6",
-          "tries": 0
+          "tries": 5
         }
       ]
     },
@@ -28,18 +28,18 @@
         {
           "question": "1. What is 2 + 2?",
           "hint": "Use numbers",
-          "answer": "",
+          "answer": "4",
           "points": 1,
           "hash": "e434b8afea8d9bea6f148503b75e300ece7d6eec5c0e798f3eebfb3831eff243:1d3e5621d30b9e191855b85199cae4f7",
-          "tries": 0
+          "tries": 1
         },
         {
           "question": "2. What is the best drink?",
           "hint": "water",
-          "answer": "",
+          "answer": "example",
           "points": 7,
           "hash": "e870aeb804e9b72408b61304362c5c890d22c334158da1f1c9b91e6b7e74726b:575258e9e35318dbaea76f4e54025ac6",
-          "tries": 0
+          "tries": 3
         }
       ]
     },
@@ -51,7 +51,7 @@
           "answer": "",
           "points": 2,
           "hash": "f4f8b572276521548557a2d402687757543111643fab30a0e7b1eb584118826c:aa72e1d9e30b368766a0ed99a8070627",
-          "tries": 0
+          "tries": 5
         },
         {
           "question": "2. What programming language is also known as a snake?",
@@ -59,7 +59,7 @@
           "answer": "",
           "points": 2,
           "hash": "38f07085383ef747272e9899c7369fb355926d8e5a50905a98957a25bb71b886:ff0fca593a1e67347f18a2088bda460c",
-          "tries": 0
+          "tries": 4
         }
       ]
     },
@@ -68,10 +68,10 @@
       "questions": [
         {
           "question": "1. What color are bananas?",
-          "answer": "",
+          "answer": "yellow",
           "points": 1,
           "hash": "50d04026b17e6735e304fa1c92d7733b439af894c3ea62ba359aabe14678be20:d3bf5ffa7edf3d542bfa3ae90a525a9f",
-          "tries": 0
+          "tries": 1
         }
       ]
     }
