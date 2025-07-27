@@ -75,6 +75,11 @@
       margin-bottom: 1rem;
     }
 
+    h2 {
+      text-align: center;
+      color: var(--accent);
+    }
+
     p {
       font-size: 1.05rem;
       line-height: 1.6;
@@ -109,6 +114,11 @@
       background-color: var(--accent);
       color: white;
     }
+
+    .active {
+      background-color: var(--accent);
+      color: white;
+    }
   </style>
 </head>
 
@@ -116,7 +126,7 @@
   <nav>
     <div class="logo">{{ title }}</div>
     <ul>
-      <li><a href="/">Home</a></li>
+      <li><a href="/" class="active">Home</a></li>
       <li><a href="/readme">Read Me</a></li>
       <li><a href="/flags">Flags</a></li>
       <li><a href="/results">Results</a></li>
@@ -127,6 +137,7 @@
     <img src="{{ url_for('static', filename='logo.jpg') }}" alt="{{ title }} Logo" class="hero-image">
 
     <h1>Welcome to {{ title }}</h1>
+    <h2>CTF Scoring Engine</h2>
 
     <div class="card">
       <p>

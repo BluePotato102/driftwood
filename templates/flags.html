@@ -229,6 +229,64 @@
       background-color: var(--accent);
       color: white;
     }
+
+    .active {
+      background-color: var(--accent);
+      color: white;
+    }
+
+    .accordion {
+  margin-top: 2rem;
+}
+
+.accordion-item {
+  margin-bottom: 1.25rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #334155;
+  background: var(--card);
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--card);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+.accordion-header:hover {
+  background-color: #2a3c52;
+}
+
+.accordion-header .icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.active .icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+  padding: 0 1.5rem;
+}
+.accordion-item.active .accordion-content {
+  max-height: 1000px;
+  padding-bottom: 1rem;
+}
+
   </style>
 </head>
 
@@ -238,7 +296,7 @@
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/readme">Read Me</a></li>
-      <li><a href="/flags">Flags</a></li>
+      <li><a href="/flags" class="active">Flags</a></li>
       <li><a href="/results">Results</a></li>
     </ul>
   </nav>
@@ -246,36 +304,42 @@
   <div class="container">
     <h1>-Flags-</h1>
     <hr>
-    {% for section in sections %}
-    <h2>{{ section.name }}</h2>
-    {% for q in section.questions %}
-    <div class="card" data-id="{{ section.name }}_{{ loop.index0 }}">
-      <div style="flex: 1;">
-        <span class="question-text">
-          {{ q.question }}
-          <span style="font-size: 0.9rem; color: var(--muted)">
-            ({{ q.points }} pt)
-          </span>
-        </span>
-        {% if q.hint %}
-        <div class="hint-text" style="font-size: 0.85rem; color: var(--muted); margin-top: 6px; display: none;">
-          Hint: {{ q.hint }}
-        </div>
-
-        {% endif %}
-      </div>
-      <div class="actions">
-        <i class='bx bx-check-circle success-icon' style="display:none"></i>
-        <i class='bx bx-x-circle failure-icon' style="display:none"></i>
-        <button class="btn" onclick="openFlagModal('{{ section.name }}', '{{ loop.index0 }}', this)">
-          Submit Flag
+    <div class="accordion">
+      {% for section in sections %}
+      <div class="accordion-item">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          {{ section.name }}
+          <i class='bx bx-chevron-down icon'></i>
         </button>
+        <div class="accordion-content">
+          {% for q in section.questions %}
+          <div class="card" data-id="{{ section.name }}_{{ loop.index0 }}">
+            <div style="flex: 1;">
+              <span class="question-text">
+                {{ q.question }}
+                <span style="font-size: 0.9rem; color: var(--muted)">
+                  ({{ q.points }} pt)
+                </span>
+              </span>
+              {% if q.hint %}
+              <div class="hint-text" style="font-size: 0.85rem; color: var(--muted); margin-top: 6px; display: none;">
+                Hint: {{ q.hint }}
+              </div>
+              {% endif %}
+            </div>
+            <div class="actions">
+              <i class='bx bx-check-circle success-icon' style="display:none"></i>
+              <i class='bx bx-x-circle failure-icon' style="display:none"></i>
+              <button class="btn" onclick="openFlagModal('{{ section.name }}', '{{ loop.index0 }}', this)">
+                Submit Flag
+              </button>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
       </div>
-    </div>
-
-    {% endfor %}
-    {% endfor %}
-  </div>
+      {% endfor %}
+    </div>    
 
   <div class="modal-bg" id="flagModal" tabindex="0">
     <div class="modal">
@@ -457,6 +521,14 @@
       document.getElementById("flagModal").addEventListener("keydown", exitOnKeyBoardPress);
     };
   </script>
+
+<script>
+  function toggleAccordion(header) {
+    const item = header.closest('.accordion-item');
+    item.classList.toggle('active');
+  }
+</script>
+
 </body>
 
 </html>

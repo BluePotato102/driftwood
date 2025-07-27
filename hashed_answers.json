@@ -59,7 +59,7 @@
           "answer": "",
           "points": 2,
           "hash": "38f07085383ef747272e9899c7369fb355926d8e5a50905a98957a25bb71b886:ff0fca593a1e67347f18a2088bda460c",
-          "tries": 4
+          "tries": 5
         }
       ]
     },
@@ -68,10 +68,10 @@
       "questions": [
         {
           "question": "1. What color are bananas?",
-          "answer": "yellow",
           "points": 1,
           "hash": "50d04026b17e6735e304fa1c92d7733b439af894c3ea62ba359aabe14678be20:d3bf5ffa7edf3d542bfa3ae90a525a9f",
-          "tries": 1
+          "tries": 3,
+          "answer": "yellow"
         }
       ]
     }
