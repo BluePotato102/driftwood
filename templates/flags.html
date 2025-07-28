@@ -79,7 +79,7 @@
       background: var(--card);
       border-radius: 12px;
       padding: 20px;
-      margin-bottom: 1rem;
+      margin-top: 1rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -236,57 +236,57 @@
     }
 
     .accordion {
-  margin-top: 2rem;
-}
+      margin-top: 2rem;
+    }
 
-.accordion-item {
-  margin-bottom: 1.25rem;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #334155;
-  background: var(--card);
-}
+    .accordion-item {
+      margin-bottom: 1.25rem;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #334155;
+      background: var(--card);
+    }
 
-.accordion-header {
-  width: 100%;
-  padding: 1rem 1.5rem;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--text);
-  background: var(--card);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  transition: background 0.3s ease;
-}
+    .accordion-header {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--card);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: background 0.3s ease;
+    }
 
-.accordion-header:hover {
-  background-color: #2a3c52;
-}
+    .accordion-header:hover {
+      background-color: #2a3c52;
+    }
 
-.accordion-header .icon {
-  font-size: 1.5rem;
-  transition: transform 0.3s ease;
-}
+    .accordion-header .icon {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
 
-.accordion-item.active .icon {
-  transform: rotate(180deg);
-}
+    .accordion-item.active .icon {
+      transform: rotate(180deg);
+    }
 
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.35s ease;
-  padding: 0 1.5rem;
-}
-.accordion-item.active .accordion-content {
-  max-height: 1000px;
-  padding-bottom: 1rem;
-}
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      padding: 0 1.5rem;
+    }
 
+    .accordion-item.active .accordion-content {
+      max-height: 1000px;
+      padding-bottom: 1rem;
+    }
   </style>
 </head>
 
@@ -339,195 +339,201 @@
         </div>
       </div>
       {% endfor %}
-    </div>    
-
-  <div class="modal-bg" id="flagModal" tabindex="0">
-    <div class="modal">
-      <h3>Submit Your Flag</h3>
-      <input type="text" id="flagInput" placeholder="Enter flag here..." />
-      <div class="buttons">
-        <button class="btn" onclick="closeModal('flagModal')">Cancel</button>
-        <button class="btn" onclick="submitFlag()">Submit</button>
-      </div>
-      <div class="message" id="responseMsg"></div>
     </div>
-  </div>
 
-  <!-- Success Modal -->
-  <div class="modal-bg" id="successModal" tabindex="0">
-    <div class="modal" style="text-align: center;">
-      <i class='bx bx-check-circle' style="font-size: 3rem; color: var(--success);"></i>
-      <h3>Correct!</h3>
-      <div class="buttons" style="justify-content: center; margin-top: 1rem;">
-        <button class="btn" onclick="closeModal('successModal')">Close</button>
+    <div class="modal-bg" id="flagModal" tabindex="0">
+      <div class="modal">
+        <h3>Submit Your Flag</h3>
+        <input type="text" id="flagInput" placeholder="Enter flag here..." />
+        <div class="buttons">
+          <button class="btn" onclick="closeModal('flagModal')">Cancel</button>
+          <button class="btn" onclick="submitFlag()">Submit</button>
+        </div>
+        <div class="message" id="responseMsg"></div>
       </div>
     </div>
-  </div>
 
-
-  <!-- Error Modal -->
-  <div class="modal-bg" id="errorModal" tabindex="0">
-    <div class="modal" style="text-align: center;">
-      <i class='bx bx-x-circle' style="font-size: 3rem; color: var(--danger);"></i>
-      <h3>Incorrect, please try again.</h3>
-      <div class="message" id="errorAttempts" style="color: var(--muted); margin-top: 0.5rem;"></div>
-      <div class="buttons" style="justify-content: center; margin-top: 1rem;">
-        <button class="btn" onclick="closeModal('errorModal')">Close</button>
+    <!-- Success Modal -->
+    <div class="modal-bg" id="successModal" tabindex="0">
+      <div class="modal" style="text-align: center;">
+        <i class='bx bx-check-circle' style="font-size: 3rem; color: var(--success);"></i>
+        <h3>Correct!</h3>
+        <div class="buttons" style="justify-content: center; margin-top: 1rem;">
+          <button class="btn" onclick="closeModal('successModal')">Close</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <a href="https://github.com/bluepotato102/driftwood" class="badge" target="_blank">
-    Made with Driftwood 🪵
-  </a>
 
-  <script>
-    let currentSection = "";
-    let currentIndex = 0;
-    let currentBtn = null;
+    <!-- Error Modal -->
+    <div class="modal-bg" id="errorModal" tabindex="0">
+      <div class="modal" style="text-align: center;">
+        <i class='bx bx-x-circle' style="font-size: 3rem; color: var(--danger);"></i>
+        <h3>Incorrect, please try again.</h3>
+        <div class="message" id="errorAttempts" style="color: var(--muted); margin-top: 0.5rem;"></div>
+        <div class="buttons" style="justify-content: center; margin-top: 1rem;">
+          <button class="btn" onclick="closeModal('errorModal')">Close</button>
+        </div>
+      </div>
+    </div>
 
-    const solvedFlags = JSON.parse(localStorage.getItem("solvedFlags") || "{}");
+    <a href="https://github.com/bluepotato102/driftwood" class="badge" target="_blank">
+      Made with Driftwood 🪵
+    </a>
 
-    function markSolved(id) {
-      const card = document.querySelector(`.card[data-id="${id}"]`);
-      if (!card) return;
-      card.querySelector(".btn").disabled = true;
-      card.querySelector(".success-icon").style.display = "inline";
-    }
+    <script>
+      let currentSection = "";
+      let currentIndex = 0;
+      let currentBtn = null;
 
-    function markFailed(id) {
-      const card = document.querySelector(`.card[data-id="${id}"]`);
-      if (!card) return;
-      card.querySelector(".btn").disabled = true;
-      card.querySelector(".failure-icon").style.display = "inline";
-    }
+      const solvedFlags = JSON.parse(localStorage.getItem("solvedFlags") || "{}");
 
-    function openFlagModal(section, index, btn) {
-      currentSection = section;
-      currentIndex = index;
-      currentBtn = btn;
-      document.getElementById("flagInput").value = "";
-      document.getElementById("responseMsg").innerText = "";
-      document.getElementById("flagModal").style.display = "flex";
-      document.getElementById("flagModal").focus();
-    }
-
-    function showModal(id) {
-      const modal = document.getElementById(id);
-      if (!modal) return;
-
-      modal.style.display = "flex";
-      modal.focus();
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
-    }
-
-    async function submitFlag() {
-      const flag = document.getElementById("flagInput").value;
-      const res = await fetch("/submit_flag", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ section: currentSection, index: currentIndex, flag: flag })
-      });
-
-      const data = await res.json();
-      closeModal("flagModal");
-
-      const id = `${currentSection}_${currentIndex}`;
-      const card = document.querySelector(`.card[data-id="${id}"]`);
-      const btn = card?.querySelector(".btn");
-
-      if (data.success) {
-        solvedFlags[id] = true;
-        localStorage.setItem("solvedFlags", JSON.stringify(solvedFlags));
-        markSolved(id);
-        showModal("successModal");
-      } else {
-        const msgEl = document.querySelector("#errorModal .message");
-        if (msgEl) msgEl.textContent = data.message;
-
-        showModal("errorModal");
-
-        if (data.tries >= data.maxTries && btn) {
-          btn.disabled = true;
-          card.querySelector(".failure-icon").style.display = "inline";
-        }
+      function markSolved(id) {
+        const card = document.querySelector(`.card[data-id="${id}"]`);
+        if (!card) return;
+        card.querySelector(".btn").disabled = true;
+        card.querySelector(".success-icon").style.display = "inline";
       }
-    }
 
-    async function isAnswerCorrect(answer, hashWithSalt) {
-      if (!answer || !hashWithSalt) return false;
+      function markFailed(id) {
+        const card = document.querySelector(`.card[data-id="${id}"]`);
+        if (!card) return;
+        card.querySelector(".btn").disabled = true;
+        card.querySelector(".failure-icon").style.display = "inline";
+      }
 
-      const [storedHash, salt] = hashWithSalt.split(":");
-      const encoded = new TextEncoder().encode(answer + salt);
-      const buffer = await crypto.subtle.digest("SHA-256", encoded);
-      const calculatedHash = Array.from(new Uint8Array(buffer))
-        .map(b => b.toString(16).padStart(2, "0"))
-        .join("");
+      function openFlagModal(section, index, btn) {
+        currentSection = section;
+        currentIndex = index;
+        currentBtn = btn;
+        document.getElementById("flagInput").value = "";
+        document.getElementById("responseMsg").innerText = "";
+        document.getElementById("flagModal").style.display = "flex";
+        document.getElementById("flagModal").focus();
+      }
 
-      return calculatedHash === storedHash;
-    }
+      function showModal(id) {
+        const modal = document.getElementById(id);
+        if (!modal) return;
 
-    // On load
-    window.onload = () => {
-      fetch("/config")
-        .then(res => res.json())
-        .then(config => {
-          config.sections.forEach(section => {
-            section.questions.forEach(async (q, i) => {
-              const id = `${section.name}_${i}`;
+        modal.style.display = "flex";
+        modal.focus();
+      }
 
-              if (q.answer && q.hash && await isAnswerCorrect(q.answer, q.hash)) {
-                markSolved(id);
-              }
+      function closeModal(id) {
+        document.getElementById(id).style.display = "none";
+      }
 
-              if (q.tries >= config.maxTries && config.maxTries !== "Infinity") {
-                markFailed(id);
-              }
+      async function submitFlag() {
+        const flag = document.getElementById("flagInput").value;
+        const res = await fetch("/submit_flag", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ section: currentSection, index: currentIndex, flag: flag })
+        });
+
+        const data = await res.json();
+        closeModal("flagModal");
+
+        const id = `${currentSection}_${currentIndex}`;
+        const card = document.querySelector(`.card[data-id="${id}"]`);
+        const btn = card?.querySelector(".btn");
+
+        if (data.success) {
+          solvedFlags[id] = true;
+          localStorage.setItem("solvedFlags", JSON.stringify(solvedFlags));
+          markSolved(id);
+          showModal("successModal");
+        } else {
+          const msgEl = document.querySelector("#errorModal .message");
+          if (msgEl) {
+            msgEl.textContent = data.message;
+
+            // Optionally add tries info here
+            if (data.maxTries !== "Infinity") {
+              msgEl.textContent += ` (${data.tries}/${data.maxTries} attempts)`;
+            }
+          }
+
+          showModal("errorModal");
+
+          if (data.tries >= data.maxTries && btn) {
+            btn.disabled = true;
+            card.querySelector(".failure-icon").style.display = "inline";
+          }
+        }
+
+      }
+
+      async function isAnswerCorrect(answer, hashWithSalt) {
+        if (!answer || !hashWithSalt) return false;
+
+        const [storedHash, salt] = hashWithSalt.split(":");
+        const encoded = new TextEncoder().encode(answer + salt);
+        const buffer = await crypto.subtle.digest("SHA-256", encoded);
+        const calculatedHash = Array.from(new Uint8Array(buffer))
+          .map(b => b.toString(16).padStart(2, "0"))
+          .join("");
+
+        return calculatedHash === storedHash;
+      }
+
+      // On load
+      window.onload = () => {
+        fetch("/config")
+          .then(res => res.json())
+          .then(config => {
+            config.sections.forEach(section => {
+              section.questions.forEach(async (q, i) => {
+                const id = `${section.name}_${i}`;
+
+                if (q.answer && q.hash && await isAnswerCorrect(q.answer, q.hash)) {
+                  markSolved(id);
+                }
+
+                if (q.tries >= config.maxTries && config.maxTries !== "Infinity") {
+                  markFailed(id);
+                }
+              });
             });
+          });
+
+
+
+        // enter/escape to submit/close flag
+        document.getElementById("flagInput").addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            submitFlag();
+          }
+        });
+
+        // exit modal by click
+        document.querySelectorAll(".modal-bg").forEach(modal => {
+          modal.addEventListener("click", e => {
+            if (e.target === modal) closeModal(modal.id);
           });
         });
 
-
-
-      // enter/escape to submit/close flag
-      document.getElementById("flagInput").addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          submitFlag();
+        // function to exit by keyboad press
+        function exitOnKeyBoardPress(event) {
+          const modal = event.target;
+          if ((modal.id === "successModal" || modal.id === "errorModal") || (modal.id === "flagModal" && event.key === "Escape")) {
+            closeModal(modal.id);
+          }
         }
-      });
 
-      // exit modal by click
-      document.querySelectorAll(".modal-bg").forEach(modal => {
-        modal.addEventListener("click", e => {
-          if (e.target === modal) closeModal(modal.id);
-        });
-      });
+        // Attach keydown listeners once
+        document.getElementById("successModal").addEventListener("keydown", exitOnKeyBoardPress);
+        document.getElementById("errorModal").addEventListener("keydown", exitOnKeyBoardPress);
+        document.getElementById("flagModal").addEventListener("keydown", exitOnKeyBoardPress);
+      };
 
-      // function to exit by keyboad press
-      function exitOnKeyBoardPress(event) {
-        const modal = event.target;
-        if ((modal.id === "successModal" || modal.id === "errorModal") || (modal.id === "flagModal" && event.key === "Escape")) {
-          closeModal(modal.id);
-        }
+      function toggleAccordion(header) {
+        const item = header.closest('.accordion-item');
+        item.classList.toggle('active');
       }
-
-      // Attach keydown listeners once
-      document.getElementById("successModal").addEventListener("keydown", exitOnKeyBoardPress);
-      document.getElementById("errorModal").addEventListener("keydown", exitOnKeyBoardPress);
-      document.getElementById("flagModal").addEventListener("keydown", exitOnKeyBoardPress);
-    };
-  </script>
-
-<script>
-  function toggleAccordion(header) {
-    const item = header.closest('.accordion-item');
-    item.classList.toggle('active');
-  }
-</script>
+    </script>
 
 </body>
 

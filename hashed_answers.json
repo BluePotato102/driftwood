@@ -7,17 +7,17 @@
       "questions": [
         {
           "question": "1. What color is the sky?",
-          "answer": "blue",
+          "answer": "",
           "points": 1,
-          "hash": "90a7034931f41b32ffd3d0ca3beef5b1a6b13b6985bdfdd49d624cd68c1e798f:1a7b980735829775b3edc5a506679b99",
-          "tries": 1
+          "hash": "0902233b2635bf42064081a335493298d7bf65c178d130828e518aaacfe12def:08ce361273600f45855b10472e48ca5e",
+          "tries": 5
         },
         {
           "question": "2. How many legs does a spider have?",
           "hint": "Spiders are arachnids",
           "answer": "",
           "points": 1,
-          "hash": "c23535157bdd4bfde1ee4ba1c0e9e251895ce1214b80363e96c0888ef53a21b6:c9bfe236864fed46a2c5c6c2d6f737e6",
+          "hash": "7c24fa900de5c248010a2433dee701f5d3117480b155e053824adc549b9bf41c:ecfa2bb23c1f2019fb936a39aa22cc9f",
           "tries": 5
         }
       ]
@@ -30,16 +30,16 @@
           "hint": "Use numbers",
           "answer": "4",
           "points": 1,
-          "hash": "e434b8afea8d9bea6f148503b75e300ece7d6eec5c0e798f3eebfb3831eff243:1d3e5621d30b9e191855b85199cae4f7",
+          "hash": "a2c7c93c492cbe8ca71c2e193d6cf29a6e86f8318ffff76409706d0b7a65ddf5:a0f6b13ef28f699225c47dbee0d100f4",
           "tries": 1
         },
         {
           "question": "2. What is the best drink?",
           "hint": "water",
-          "answer": "example",
+          "answer": "",
           "points": 7,
-          "hash": "e870aeb804e9b72408b61304362c5c890d22c334158da1f1c9b91e6b7e74726b:575258e9e35318dbaea76f4e54025ac6",
-          "tries": 3
+          "hash": "cbf285d377d554547aaaec807dd7a0c80b91609da3f5ac8c5d6f6f15264fb8b0:574c80c6ece3e0a69f100f5b33bc5462",
+          "tries": 0
         }
       ]
     },
@@ -50,16 +50,16 @@
           "question": "1. What is the capital of France?",
           "answer": "",
           "points": 2,
-          "hash": "f4f8b572276521548557a2d402687757543111643fab30a0e7b1eb584118826c:aa72e1d9e30b368766a0ed99a8070627",
-          "tries": 5
+          "hash": "7ece86c4ab24d5035235df450f37f019b07ec57a22813c6cd683a33c5b6c8c62:e0457b23102c8d0a4aa1f4b302d0fcd2",
+          "tries": 0
         },
         {
           "question": "2. What programming language is also known as a snake?",
           "hint": "The snake is Python",
           "answer": "",
           "points": 2,
-          "hash": "38f07085383ef747272e9899c7369fb355926d8e5a50905a98957a25bb71b886:ff0fca593a1e67347f18a2088bda460c",
-          "tries": 5
+          "hash": "e3420e412432dc771c979f22cd392f2d4b38c3b2dbd00c53788c053697f49b20:cc5eab5f31fb5b953fce80dcdaf8089a",
+          "tries": 0
         }
       ]
     },
@@ -68,10 +68,10 @@
       "questions": [
         {
           "question": "1. What color are bananas?",
+          "answer": "",
           "points": 1,
-          "hash": "50d04026b17e6735e304fa1c92d7733b439af894c3ea62ba359aabe14678be20:d3bf5ffa7edf3d542bfa3ae90a525a9f",
-          "tries": 3,
-          "answer": "yellow"
+          "hash": "c16781509ff2dcbca9a06186f2b58e01f0919c9e51ee27e3adfa25eea1280bcd:283ce45ccbf1c98c02d3f7f8cacd4d65",
+          "tries": 0
         }
       ]
     }

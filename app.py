@@ -48,24 +48,22 @@ def submit_flag():
 
     if user_hash == stored_hash:
         question["answer"] = user_flag
-        result = {"success": True, "message": "Correct!"}
+        success = True
+        message = "Correct!"
     else:
-        result = {
-            "success": False,
-            "message": "Incorrect.",
-            "tries": question["tries"],
-            "maxTries": max_tries
-        }
+        success = False
+        message = "Incorrect."
 
     with open("hashed_answers.json", "w") as f:
         json.dump(HASHED_ANSWERS, f, indent=2)
 
-    result.update({
+    return jsonify({
+        "success": success,
+        "message": message,
         "tries": question["tries"],
         "maxTries": max_tries
     })
 
-    return jsonify(result)
 
 
 
